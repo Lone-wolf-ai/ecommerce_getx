@@ -6,6 +6,7 @@ import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
 import 'package:getx_ecommerce/utils/constants/text_strings.dart';
 import 'package:getx_ecommerce/utils/helpers/helper_functions.dart';
+import 'package:lottie/lottie.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen(
@@ -29,11 +30,7 @@ class SuccessScreen extends StatelessWidget {
           child: Column(
             children: [
               // Image
-              Image(
-                image:  AssetImage(image),
-                width: THelperFunctions.screenWidth(context) *
-                    0.6, // Consider context for calculations
-              ),
+              Lottie.asset(image,width: MediaQuery.of(context).size.width*0.6),
               const SizedBox(height: CustomSizes.spaceBtwSections),
 
               // Title & Subtitle

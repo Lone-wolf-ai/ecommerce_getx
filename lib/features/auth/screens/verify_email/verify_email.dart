@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_ecommerce/features/auth/controller/signup/verifycontroller.dart';
 import 'package:getx_ecommerce/features/auth/screens/login/login.dart';
 import 'package:getx_ecommerce/features/auth/screens/success_screen/success_screen.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
@@ -8,10 +9,11 @@ import 'package:getx_ecommerce/utils/constants/sizes.dart';
 import 'package:getx_ecommerce/utils/constants/text_strings.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
-
+  const VerifyEmailScreen({super.key, this.email});
+  final String? email;
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(VerifyEmailController());
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -43,7 +45,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 height: CustomSizes.spaceltwItems,
               ),
               Text(
-                'support@gmail.com',
+                email ?? '',
                 style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),
@@ -63,7 +65,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   child: const Text(CusTomTexts.tContinue),
-                  onPressed: () => Get.to(() =>  SuccessScreen(onPressed:() => Get.to(() => const LoginScreen()),),),
+                  onPressed: () => controller.checkEmailVerificationStatus(),
                 ),
               ),
               const SizedBox(
