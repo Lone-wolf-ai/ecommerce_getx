@@ -4,6 +4,7 @@ import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/circleimage/circularimage.dart';
 import 'package:getx_ecommerce/common/settingsmenue/settingbar.dart';
 import 'package:getx_ecommerce/common/widgets/primaryheadercontainer.dart';
+import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
 import 'package:getx_ecommerce/features/shop/screens/orderscreen/orderscreen.dart';
 import 'package:getx_ecommerce/features/shop/screens/address/adress.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/customsection.dart';
@@ -151,7 +152,7 @@ class SettingScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text("Log out")),
+                        onPressed: ()=>AuthintaicationRepository.instance.logut(), child: const Text("Log out")),
                   )
                 ],
               ),

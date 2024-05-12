@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
+import 'package:getx_ecommerce/features/auth/controller/login/logincontroller.dart';
 import 'package:getx_ecommerce/features/auth/screens/forgetpassword/forgetpassword.dart';
 import 'package:getx_ecommerce/features/auth/screens/signup/signup.dart';
 import 'package:getx_ecommerce/navigation/navigationbar.dart';
@@ -7,6 +10,7 @@ import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
 import 'package:getx_ecommerce/utils/constants/text_strings.dart';
+import 'package:getx_ecommerce/utils/validators/validation.dart';
 import 'package:iconsax/iconsax.dart';
 
 class ThirdPartyLogin extends StatelessWidget {
@@ -16,6 +20,7 @@ class ThirdPartyLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=Get.put(LoginController());
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -24,7 +29,7 @@ class ThirdPartyLogin extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
               border: Border.all(color: CustomColour.grey)),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () =>controller.googleSignIn(),
             icon: const Image(
               width: CustomSizes.iconMd,
               height: CustomSizes.iconMd,
@@ -56,7 +61,8 @@ class ThirdPartyLogin extends StatelessWidget {
 class CustomDivider extends StatelessWidget {
   const CustomDivider({
     super.key,
-    required this.dark, required this.title,
+    required this.dark,
+    required this.title,
   });
   final String title;
   final bool dark;
@@ -97,10 +103,15 @@ class LoginTextFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
     return Form(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      key: controller.loginFormkey,
       child: Column(
         children: [
           TextFormField(
+            controller: controller.email,
+            validator:(value)=> Validator.validateEmail(value),
             decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Iconsax.direct_right,
@@ -110,13 +121,21 @@ class LoginTextFields extends StatelessWidget {
           const SizedBox(
             height: CustomSizes.spaceBtwInputFields,
           ),
-          TextFormField(
-            decoration: const InputDecoration(
-              prefixIcon: Icon(
-                Iconsax.password_check,
-              ),
-              labelText: CusTomTexts.password,
-              suffixIcon: Icon(Iconsax.eye_slash),
+          Obx(
+            () => TextFormField(
+              controller: controller.password,
+              validator: (value) =>
+                  Validator.validateEmptyText('Password', value),
+              obscureText: controller.hidePassword.value,
+              decoration: InputDecoration(
+                  labelText: CusTomTexts.password,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  suffixIcon: IconButton(
+                      onPressed: () => controller.hidePassword.value =
+                          !controller.hidePassword.value,
+                      icon: controller.hidePassword.value
+                          ? const Icon(Iconsax.eye)
+                          : const Icon(Iconsax.eye_slash))),
             ),
           ),
           const SizedBox(
@@ -125,14 +144,19 @@ class LoginTextFields extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Checkbox(value: true, onChanged: (value) {}),
-                  const Text(CusTomTexts.rememberMe),
-                ],
+              Obx(
+                ()=> Row(
+                  children: [
+                    Checkbox(
+                        value: controller.rememberMe.value,
+                        onChanged: (value) => controller.rememberMe.value =
+                            !controller.rememberMe.value),
+                    const Text(CusTomTexts.rememberMe),
+                  ],
+                ),
               ),
               TextButton(
-                onPressed: ()=>Get.to(()=>const ForgetPassword()),
+                onPressed: () => Get.to(() => const ForgetPassword()),
                 child: const Text(CusTomTexts.forgetPassword),
               ),
             ],
@@ -144,7 +168,8 @@ class LoginTextFields extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: ()=>Get.to(()=>const NavigationBarMenue()), child: const Text(CusTomTexts.signIn))),
+                  onPressed: ()=>controller.emailAndPasswordlogin(),
+                  child: const Text(CusTomTexts.signIn))),
           const SizedBox(
             height: CustomSizes.spaceltwItems,
           ),
@@ -152,7 +177,7 @@ class LoginTextFields extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: ()=>Get.to(()=> SignupScreen()),
+              onPressed: () => Get.to(() => SignupScreen()),
               child: const Text(CusTomTexts.createAccount),
             ),
           ),

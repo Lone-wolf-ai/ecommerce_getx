@@ -28,7 +28,7 @@ class SignupController extends GetxController {
     try {
       //start loading
       TFullScreenLoader.openLoadingDialog(
-          'We are processing you information', CustomImages.docerimag);
+          'We are processing you information', CustomImages.docerimg);
       //check internet connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
