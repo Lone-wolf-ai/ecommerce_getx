@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,6 @@ import 'package:getx_ecommerce/features/shop/screens/productreview/productreview
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
 import 'package:getx_ecommerce/utils/helpers/helper_functions.dart';
-import 'package:getx_ecommerce/utils/http/http_client.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/imageicon/customimage/customimage.dart';
@@ -7,7 +6,6 @@ import 'package:getx_ecommerce/common/imageicon/widget/circularicon.dart';
 import 'package:getx_ecommerce/common/text/brandtitleverifiedicon.dart';
 import 'package:getx_ecommerce/common/text/product_tiltle_text.dart';
 import 'package:getx_ecommerce/features/shop/screens/checkout/checkoutscreen.dart';
-import 'package:getx_ecommerce/features/shop/screens/home/widget/productpricetext.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';

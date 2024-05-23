@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:getx_ecommerce/features/auth/controller/signup/signup_controller.dart';
 import 'package:getx_ecommerce/features/auth/screens/login/widgets/login_widgets.dart';
 import 'package:getx_ecommerce/features/auth/screens/signup/widgets/signupWidgets.dart';
-import 'package:getx_ecommerce/features/auth/screens/verify_email/verify_email.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
 import 'package:getx_ecommerce/utils/constants/text_strings.dart';
 import 'package:getx_ecommerce/utils/helpers/helper_functions.dart';

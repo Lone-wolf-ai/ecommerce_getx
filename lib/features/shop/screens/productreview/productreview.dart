@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/features/shop/screens/productreview/widgets/user_review_card.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/imageicon/customcarticon/circleicon.dart';
-import 'package:getx_ecommerce/common/styles/shape/container/circlecontainer.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/homescreen.dart';
 import 'package:getx_ecommerce/common/widgets/card/productcardvertical.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';

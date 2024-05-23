@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:getx_ecommerce/common/imageicon/customimage/customimage.dart';
-import 'package:getx_ecommerce/common/styles/shadow/boxshadow.dart';
 import 'package:getx_ecommerce/common/styles/shape/container/roundedcontainer.dart';
 import 'package:getx_ecommerce/common/text/brandtitleverifiedicon.dart';
 import 'package:getx_ecommerce/common/text/product_tiltle_text.dart';

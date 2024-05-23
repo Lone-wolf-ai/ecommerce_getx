@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:getx_ecommerce/common/styles/shape/container/roundedcontainer.dart';
 import 'package:getx_ecommerce/features/shop/screens/productreview/productreview.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
@@ -40,7 +39,7 @@ class UserReviewCard extends StatelessWidget {
         Row(
           children: [
             // Placeholder for rating icon (remove if not needed)
-            CustomRating(rating: 4),
+            const CustomRating(rating: 4),
             const SizedBox(width: CustomSizes.spaceltwItems),
             Text('01 Nov, 2023', style: Theme.of(context).textTheme.bodyMedium),
           ],

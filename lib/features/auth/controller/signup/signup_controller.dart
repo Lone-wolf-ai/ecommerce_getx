@@ -1,11 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
 import 'package:getx_ecommerce/data/repo/authintication/user_repo.dart';
 import 'package:getx_ecommerce/features/auth/models/usermodel/usermodel.dart';
 import 'package:getx_ecommerce/features/auth/screens/verify_email/verify_email.dart';
-import 'package:getx_ecommerce/features/shop/screens/home/homescreen.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/helpers/network_manager.dart';
 import 'package:getx_ecommerce/utils/popups/fullscreenloader.dart';

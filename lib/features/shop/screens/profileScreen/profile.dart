@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/circleimage/circularimage.dart';
+import 'package:getx_ecommerce/features/personalization/controllers/usercontroller.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/customsection.dart';
+import 'package:getx_ecommerce/features/shop/screens/setting/settingsfeature/screen/changename.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
@@ -13,6 +16,7 @@ class ProfilScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     return Scaffold(
       appBar: const CustomAppBar(
         showBackArrow: true,
@@ -58,15 +62,19 @@ class ProfilScreen extends StatelessWidget {
               const SizedBox(
                 height: CustomSizes.spaceltwItems,
               ),
-              ProfileMenue(
+              Obx(
+                ()=>ProfileMenue(
                 title: 'Name',
-                onPressed: () {},
-                value: 'Tanjim',
-              ),
+                onPressed: ()=>Get.to(()=>const ChangeName()),
+                value: '${controller.user.value.firstname} ${controller.user.value.lastname}',
+              ),),
               // Assuming you have a ProfileMenu widget defined elsewhere
 
-              ProfileMenue(
-                  title: 'Username', value: 'coding_with_t', onPressed: () {}),
+              Obx(
+                ()=>ProfileMenue(
+                  title: 'Username',
+                  value: controller.user.value.username,
+                  onPressed: () {}),),
               const SizedBox(
                   height: CustomSizes
                       .spaceltwItems), // Use const for constant spacing
@@ -82,19 +90,24 @@ class ProfilScreen extends StatelessWidget {
                   height: CustomSizes
                       .spaceltwItems), // Use const for constant spacing
 
-              ProfileMenue(
-                title: 'User ID',
-                value: '45689',
-                onPressed: () {},
-                icon: Iconsax.copy,
+              Obx(
+                ()=> ProfileMenue(
+                  title: 'User ID',
+                  value: controller.user.value.id,
+                  onPressed: () {},
+                  icon: Iconsax.copy,
+                ),
               ),
-              ProfileMenue(
-                  title: 'E-mail', value: 'coding_with_t', onPressed: () {}),
-              ProfileMenue(
+              Obx(
+                ()=>ProfileMenue(
+                  title: 'E-mail', value: controller.user.value.email, onPressed: () {}),),
+              Obx(
+                ()=>ProfileMenue(
                   title: 'Phone Number',
-                  value: '+92-317-8059528',
-                  onPressed: () {}),
-              ProfileMenue(title: 'Gender', value: 'Male', onPressed: () {}),
+                  value: controller.user.value.phoneNumber,
+                  onPressed: () {}),),
+              Obx(
+                ()=>ProfileMenue(title: 'Gender', value: controller.user.value.firstname, onPressed: () {}),),
               ProfileMenue(
                   title: 'Date of Birth',
                   value: '10 Oct, 1994',

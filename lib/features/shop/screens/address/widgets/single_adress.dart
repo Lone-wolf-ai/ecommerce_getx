@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:getx_ecommerce/common/styles/shape/container/roundedcontainer.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';

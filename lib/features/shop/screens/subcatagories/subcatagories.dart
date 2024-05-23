@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/imageicon/customimage/customimage.dart';
 import 'package:getx_ecommerce/common/widgets/card/productcardhorizontal.dart';

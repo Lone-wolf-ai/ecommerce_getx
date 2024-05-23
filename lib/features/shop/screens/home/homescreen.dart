@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/common/searchbarcontainer/customsearchbar.dart';
-import 'package:getx_ecommerce/common/text/product_tiltle_text.dart';
 import 'package:getx_ecommerce/features/shop/screens/allproducts/all_products.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/customsection.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/homeappbar.dart';

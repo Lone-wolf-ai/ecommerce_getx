@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -16,10 +15,16 @@ import 'package:getx_ecommerce/utils/exceptions/format_exceptions.dart';
 import 'package:getx_ecommerce/utils/exceptions/platform_exceptions.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthintaicationRepository extends GetxController {
+
+class AuthintaicationRepository extends GetxController { 
   static AuthintaicationRepository get instance => Get.find();
+  
+  //variable
   final deviceStorage = GetStorage();
   final _auth = FirebaseAuth.instance;
+
+  //get authincticated user data
+  User?  get auth=>_auth.currentUser;
   @override
   void onReady() {
     FlutterNativeSplash.remove();
@@ -147,6 +152,23 @@ class AuthintaicationRepository extends GetxController {
       if(kDebugMode){
         print(e);
       }
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  //forget password
+  Future<void>sendPasswordResetEmail(String email)async{
+    try{
+      await _auth.sendPasswordResetEmail(email: email);
+    }on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
       throw 'Something went wrong. Please try again';
     }
   }

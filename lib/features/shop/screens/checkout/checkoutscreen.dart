@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/styles/shape/container/roundedcontainer.dart';
@@ -121,13 +120,13 @@ class CouponCodeField extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Apply'),
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.grey.withOpacity(0.5),
                 side: BorderSide(color: Colors.grey.withOpacity(0.1)),
                 foregroundColor: dark
                     ? CustomColour.white.withOpacity(0.5)
                     : CustomColour.dark.withOpacity(0.5)),
+            child: const Text('Apply'),
           )
         ],
       ),

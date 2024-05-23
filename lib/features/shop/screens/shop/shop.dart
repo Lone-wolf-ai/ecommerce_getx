@@ -69,7 +69,7 @@ class ShopScreen extends StatelessWidget {
                         CustomSectionWidget(
                           title: 'Featured Brands',
                           textcolor: THelperFunctions.isDarkMode(context)?CustomColour.white:CustomColour.black,
-                          onPressed: ()=>Get.to(()=>AllBrandsScreen()),
+                          onPressed: ()=>Get.to(()=>const AllBrandsScreen()),
                         ),
                         const SizedBox(
                           height: CustomSizes.spaceltwItems / 1.5,

@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:getx_ecommerce/common/circleimage/circularimage.dart';
 import 'package:getx_ecommerce/common/styles/shape/container/roundedcontainer.dart';
-import 'package:getx_ecommerce/common/text/brandtitletext.dart';
 import 'package:getx_ecommerce/common/text/brandtitleverifiedicon.dart';
 import 'package:getx_ecommerce/common/text/product_tiltle_text.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/productpricetext.dart';

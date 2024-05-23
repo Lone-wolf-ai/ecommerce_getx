@@ -3,7 +3,6 @@ import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/imageicon/customcarticon/circleicon.dart';
 import 'package:getx_ecommerce/common/imageicon/customimage/customimage.dart';
 import 'package:getx_ecommerce/common/widgets/customcurvedwidget.dart';
-import 'package:getx_ecommerce/common/widgets/card/productcardvertical.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
 import 'package:getx_ecommerce/features/auth/controller/login/logincontroller.dart';
 import 'package:getx_ecommerce/features/auth/screens/forgetpassword/forgetpassword.dart';
 import 'package:getx_ecommerce/features/auth/screens/signup/signup.dart';
-import 'package:getx_ecommerce/navigation/navigationbar.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
@@ -177,7 +174,7 @@ class LoginTextFields extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: OutlinedButton(
-              onPressed: () => Get.to(() => SignupScreen()),
+              onPressed: () => Get.to(() => const SignupScreen()),
               child: const Text(CusTomTexts.createAccount),
             ),
           ),

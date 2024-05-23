@@ -5,6 +5,7 @@ import 'package:getx_ecommerce/common/circleimage/circularimage.dart';
 import 'package:getx_ecommerce/common/settingsmenue/settingbar.dart';
 import 'package:getx_ecommerce/common/widgets/primaryheadercontainer.dart';
 import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
+import 'package:getx_ecommerce/features/personalization/controllers/usercontroller.dart';
 import 'package:getx_ecommerce/features/shop/screens/orderscreen/orderscreen.dart';
 import 'package:getx_ecommerce/features/shop/screens/address/adress.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/customsection.dart';
@@ -20,6 +21,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller=Get.put(UserController());
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -45,19 +47,23 @@ class SettingScreen extends StatelessWidget {
                       padding: 0,
                       applydark: false,
                     ),
-                    title: Text(
-                      "tanjim",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineSmall!
-                          .apply(color: CustomColour.white),
+                    title: Obx(
+                      ()=> Text(
+                        controller.user.value.username,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall!
+                            .apply(color: CustomColour.white),
+                      ),
                     ),
-                    subtitle: Text(
-                      'email',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .apply(color: CustomColour.white),
+                    subtitle: Obx(
+                      ()=> Text(
+                        controller.user.value.email,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .apply(color: CustomColour.white),
+                      ),
                     ),
                     trailing: IconButton(
                         onPressed: () => Get.to(() => const ProfilScreen()),
