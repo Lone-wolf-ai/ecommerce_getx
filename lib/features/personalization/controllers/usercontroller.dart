@@ -13,8 +13,8 @@ class UserController extends GetxController {
       if (userCredential != null) {
         final user = UserModel(
             id: userCredential.user!.uid,
-            firstname: userCredential.user!.displayName?.substring(0) ?? '',
-            lastname: userCredential.user!.displayName?.substring(1) ?? '',
+            firstname: '',
+            lastname:'',
             username: userCredential.user!.displayName ?? '',
             email: userCredential.user!.email ?? '',
             phoneNumber: userCredential.user!.phoneNumber ?? '',
