@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/circleimage/circularimage.dart';
 import 'package:getx_ecommerce/features/personalization/controllers/usercontroller.dart';
@@ -31,14 +32,23 @@ class ProfilScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const CircularImage(
-                      imagepath: CustomImages.user,
-                      width: 80,
-                      height: 80,
-                      applydark: false,
-                    ),
+                    Obx(() {
+                      final networkimg=controller.user.value.profilePic;
+                      final img=networkimg.isNotEmpty?networkimg:CustomImages.user;
+                      return controller.imguploading.value
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          :  CircularImage(
+                              imagepath: img,
+                              isnetworkimg:networkimg.isNotEmpty?true:false ,
+                              width: 80,
+                              height: 80,
+                              applydark: false,
+                            );
+                    }),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: ()=>controller.uploadUserProfilePicture(),
                       child: const Text("Change Profile Picture"),
                     )
                   ],
@@ -63,18 +73,21 @@ class ProfilScreen extends StatelessWidget {
                 height: CustomSizes.spaceltwItems,
               ),
               Obx(
-                ()=>ProfileMenue(
-                title: 'Name',
-                onPressed: ()=>Get.to(()=>const ChangeName()),
-                value: '${controller.user.value.firstname} ${controller.user.value.lastname}',
-              ),),
+                () => ProfileMenue(
+                  title: 'Name',
+                  onPressed: () => Get.to(() => const ChangeName()),
+                  value:
+                      '${controller.user.value.firstname} ${controller.user.value.lastname}',
+                ),
+              ),
               // Assuming you have a ProfileMenu widget defined elsewhere
 
               Obx(
-                ()=>ProfileMenue(
-                  title: 'Username',
-                  value: controller.user.value.username,
-                  onPressed: () {}),),
+                () => ProfileMenue(
+                    title: 'Username',
+                    value: controller.user.value.username,
+                    onPressed: () {}),
+              ),
               const SizedBox(
                   height: CustomSizes
                       .spaceltwItems), // Use const for constant spacing
@@ -91,7 +104,7 @@ class ProfilScreen extends StatelessWidget {
                       .spaceltwItems), // Use const for constant spacing
 
               Obx(
-                ()=> ProfileMenue(
+                () => ProfileMenue(
                   title: 'User ID',
                   value: controller.user.value.id,
                   onPressed: () {},
@@ -99,15 +112,23 @@ class ProfilScreen extends StatelessWidget {
                 ),
               ),
               Obx(
-                ()=>ProfileMenue(
-                  title: 'E-mail', value: controller.user.value.email, onPressed: () {}),),
+                () => ProfileMenue(
+                    title: 'E-mail',
+                    value: controller.user.value.email,
+                    onPressed: () {}),
+              ),
               Obx(
-                ()=>ProfileMenue(
-                  title: 'Phone Number',
-                  value: controller.user.value.phoneNumber,
-                  onPressed: () {}),),
+                () => ProfileMenue(
+                    title: 'Phone Number',
+                    value: controller.user.value.phoneNumber,
+                    onPressed: () {}),
+              ),
               Obx(
-                ()=>ProfileMenue(title: 'Gender', value: controller.user.value.firstname, onPressed: () {}),),
+                () => ProfileMenue(
+                    title: 'Gender',
+                    value: controller.user.value.firstname,
+                    onPressed: () {}),
+              ),
               ProfileMenue(
                   title: 'Date of Birth',
                   value: '10 Oct, 1994',
@@ -118,7 +139,7 @@ class ProfilScreen extends StatelessWidget {
               ),
               Center(
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () => controller.deleteAccountWarningPopup(),
                     child: const Text(
                       'Closed Account',
                       style: TextStyle(color: Colors.red),

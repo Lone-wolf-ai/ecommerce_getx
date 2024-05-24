@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:getx_ecommerce/common/appbar/customappbar.dart';
 import 'package:getx_ecommerce/common/circleimage/circularimage.dart';
 import 'package:getx_ecommerce/common/settingsmenue/settingbar.dart';
@@ -39,38 +40,41 @@ class SettingScreen extends StatelessWidget {
                           .apply(color: CustomColour.white),
                     ),
                   ),
-                  ListTile(
-                    leading: const CircularImage(
-                      imagepath: CustomImages.user,
-                      width: 50,
-                      height: 50,
-                      padding: 0,
-                      applydark: false,
-                    ),
-                    title: Obx(
-                      ()=> Text(
-                        controller.user.value.username,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .apply(color: CustomColour.white),
+                  Obx(()=>
+                     ListTile(
+                      leading:  CircularImage(
+                        isnetworkimg: controller.user.value.profilePic.isNotEmpty?true:false,
+                        imagepath:controller.user.value.profilePic.isNotEmpty?controller.user.value.profilePic: CustomImages.user,
+                        width: 50,
+                        height: 50,
+                        padding: 0,
+                        applydark: false,
                       ),
-                    ),
-                    subtitle: Obx(
-                      ()=> Text(
-                        controller.user.value.email,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .apply(color: CustomColour.white),
+                      title: Obx(
+                        ()=> Text(
+                          controller.user.value.username,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineSmall!
+                              .apply(color: CustomColour.white),
+                        ),
                       ),
+                      subtitle: Obx(
+                        ()=> Text(
+                          controller.user.value.email,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .apply(color: CustomColour.white),
+                        ),
+                      ),
+                      trailing: IconButton(
+                          onPressed: () => Get.to(() => const ProfilScreen()),
+                          icon: const Icon(
+                            Iconsax.edit,
+                            color: CustomColour.white,
+                          )),
                     ),
-                    trailing: IconButton(
-                        onPressed: () => Get.to(() => const ProfilScreen()),
-                        icon: const Icon(
-                          Iconsax.edit,
-                          color: CustomColour.white,
-                        )),
                   ),
                   const SizedBox(
                     height: CustomSizes.spaceBtwSections,

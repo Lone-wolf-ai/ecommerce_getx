@@ -5,6 +5,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:getx_ecommerce/common/devicestoragestring/storagestring.dart';
+import 'package:getx_ecommerce/data/repo/authintication/user_repo.dart';
 import 'package:getx_ecommerce/features/auth/screens/login/login.dart';
 import 'package:getx_ecommerce/features/auth/screens/onboarding/onboarding.dart';
 import 'package:getx_ecommerce/features/auth/screens/verify_email/verify_email.dart';
@@ -172,4 +173,41 @@ class AuthintaicationRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+  //reauth
+  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
+  try {
+    // Create a credential
+    AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
+    // ReAuthenticate
+    await _auth.currentUser!.reauthenticateWithCredential(credential);
+  } on FirebaseAuthException catch (e) {
+    throw TFirebaseAuthException(e.code).message;
+  } on FirebaseException catch (e) {
+    throw TFirebaseException(e.code).message;
+  } on FormatException catch (e) {
+    throw const TFormatException();
+  } on PlatformException catch (e) {
+    throw TPlatformException(e.code).message;
+  } catch (e) {
+    throw 'Something went wrong. Please try again';
+  }
+}
+//delete account
+Future<void> deleteAccount() async {
+  try {
+    await UserRepo.instance.removeuserdata(_auth.currentUser!.uid);
+    await _auth.currentUser?.delete();
+  } on FirebaseAuthException catch (e) {
+    throw TFirebaseAuthException(e.code).message;
+  } on FirebaseException catch (e) {
+    throw TFirebaseException(e.code).message;
+  } on FormatException catch (_) {
+    throw const TFormatException();
+  } on PlatformException catch (e) {
+    throw TPlatformException(e.code).message;
+  } catch (e) {
+    throw 'Something went wrong. Please try again';
+  }
+}
+
 }
