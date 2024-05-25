@@ -6,6 +6,8 @@ import 'package:getx_ecommerce/common/searchbarcontainer/customsearchbar.dart';
 import 'package:getx_ecommerce/common/tabbar/tabbar.dart';
 import 'package:getx_ecommerce/common/widgets/brandcard.dart';
 import 'package:getx_ecommerce/common/widgets/brandshowcase.dart';
+import 'package:getx_ecommerce/features/shop/controllers/categorycontroller.dart';
+import 'package:getx_ecommerce/features/shop/models/categorymodel.dart';
 import 'package:getx_ecommerce/features/shop/screens/allbrandscreen/allbradnscreen.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/homescreen.dart';
 import 'package:getx_ecommerce/features/shop/screens/home/widget/customsection.dart';
@@ -20,8 +22,9 @@ class ShopScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories=CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: CustomAppBar(
           showBackArrow: false,
@@ -87,35 +90,13 @@ class ShopScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  bottom: const TTabBar(
-                    tabs: [
-                      Tab(
-                        child: Text('Sports'),
-                      ),
-                      Tab(
-                        child: Text('Furniture'),
-                      ),
-                      Tab(
-                        child: Text('Electronics'),
-                      ),
-                      Tab(
-                        child: Text('Clothes'),
-                      ),
-                      Tab(
-                        child: Text('Cosmetics'),
-                      ),
-                    ],
+                  bottom:  TTabBar(
+                    tabs: categories.map((element) => Tab(text: element.name,)).toList()
                   ))
             ];
           },
-          body: const TabBarView(
-            children: [
-              TabCatagory(),
-              TabCatagory(),
-              TabCatagory(),
-              TabCatagory(),
-              TabCatagory(),
-            ],
+          body:  TabBarView(
+            children: categories.map((element) => TabCatagory(category: element)).toList(),
           ),
         ),
       ),
@@ -125,9 +106,9 @@ class ShopScreen extends StatelessWidget {
 
 class TabCatagory extends StatelessWidget {
   const TabCatagory({
-    super.key,
+    super.key, required this.category,
   });
-
+final CategoryModel category;
   @override
   Widget build(BuildContext context) {
     return ListView(

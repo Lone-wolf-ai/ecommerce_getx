@@ -61,12 +61,7 @@ class HomeScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(CustomSizes.defaultSpace),
               child: PromoSlider(
-                banners: [
-                  CustomImages.banner1,
-                  CustomImages.banner2,
-                  CustomImages.banner3,
-                  CustomImages.banner4
-                ],
+               
               ),
             ),
           

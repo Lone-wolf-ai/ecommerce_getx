@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/common/imageicon/customimage/customimage.dart';
 import 'package:getx_ecommerce/common/styles/shape/container/circlecontainer.dart';
-import 'package:getx_ecommerce/features/shop/controllers/homecontroller.dart';
+import 'package:getx_ecommerce/features/shop/controllers/bannercontrol.dart';
 import 'package:getx_ecommerce/utils/constants/colors.dart';
 import 'package:getx_ecommerce/utils/constants/sizes.dart';
 
 class PromoSlider extends StatelessWidget {
-  const PromoSlider({super.key, required this.banners});
-  final List<String>banners;
+  const PromoSlider({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final controller = Get.put(BannerController());
     return Column(
       children: [
         CarouselSlider(
@@ -21,7 +23,13 @@ class PromoSlider extends StatelessWidget {
             onPageChanged: (index, reason) =>
                 controller.updatePageIndicator(index),
           ),
-          items: banners.map((e) => RoundedImage(imageUrl: e)).toList(),
+          items: controller.banners
+              .map((e) => RoundedImage(
+                    imageUrl: e.imageUrl,
+                    isNetworkImage: true,
+                    onPressed: () => Get.toNamed(e.targetScreen),
+                  ))
+              .toList(),
         ),
         const SizedBox(
           height: CustomSizes.spaceltwItems,
@@ -31,7 +39,7 @@ class PromoSlider extends StatelessWidget {
             () => Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                for (int i = 0; i < banners.length; i++)
+                for (int i = 0; i < controller.banners.length; i++)
                   Customcirclebox(
                     width: 20,
                     height: 4,

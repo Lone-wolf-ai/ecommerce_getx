@@ -6,7 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
 import 'package:getx_ecommerce/data/repo/authintication/user_repo.dart';
-import 'package:getx_ecommerce/features/auth/models/usermodel/usermodel.dart';
+import 'package:getx_ecommerce/features/personalization/models/usermodel/usermodel.dart';
 import 'package:getx_ecommerce/features/auth/screens/login/login.dart';
 import 'package:getx_ecommerce/features/shop/screens/profileScreen/re_auth_user_login.dart';
 import 'package:getx_ecommerce/utils/constants/image_strings.dart';

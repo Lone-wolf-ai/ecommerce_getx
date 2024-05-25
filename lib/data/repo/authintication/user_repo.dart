@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:getx_ecommerce/data/repo/authintication/auth_repository.dart';
-import 'package:getx_ecommerce/features/auth/models/usermodel/usermodel.dart';
+import 'package:getx_ecommerce/features/personalization/models/usermodel/usermodel.dart';
 
 import 'package:getx_ecommerce/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:getx_ecommerce/utils/exceptions/firebase_exceptions.dart';
